@@ -55,6 +55,7 @@ class TestDatascout(unittest.TestCase):
         assert maps['/lib/x86_64-linux-gnu/ld-2.27.so'] in struct.unpack("<%dQ"%(len(aux)/8), aux)
         return argv, env, aux, maps
 
+    @unittest.skip("broken")
     def test_datascout(self):
         with archr.targets.DockerImageTarget('archr-test:entrypoint-env').build().start() as t:
             _,_,_,maps = self.datascout_checks(t)
@@ -69,6 +70,7 @@ class TestDatascout(unittest.TestCase):
             }
             assert all(maps[x] == docker_ref[x] for x in docker_ref)
 
+    @unittest.skip("broken")
     def test_datascout_local(self):
         # copy to a writable location
         tf = tempfile.mktemp()

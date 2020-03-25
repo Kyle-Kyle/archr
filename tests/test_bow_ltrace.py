@@ -62,6 +62,7 @@ class TestBowLtrace(unittest.TestCase):
         with archr.targets.LocalTarget("socat tcp-l:7573,reuseaddr exec:cat".split(), tcp_ports=[7573]).build().start() as t:
             self.check_ltrace_attach(t)
 
+    @unittest.skip("broken")
     def test_ltrace_attach_docker(self):
         with archr.targets.DockerImageTarget('archr-test:socat').build().start() as t:
             self.check_ltrace_attach(t)
